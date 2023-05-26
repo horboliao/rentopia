@@ -1,6 +1,10 @@
 import './globals.css'
 import { Montserrat } from 'next/font/google'
 import Navbar from "@/app/components/navbar/Navbar";
+import ClientOnly from "@/app/components/ClientOnly";
+import {RegisterModal} from "./components/modals/RegisterModal";
+import React from "react";
+import {ToasterProvider} from "@/app/providers/ToasterProvider";
 
 const font = Montserrat({ subsets: ['latin'] })
 
@@ -17,7 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-      <Navbar/>
+      <ClientOnly>
+          <ToasterProvider/>
+        <RegisterModal/>
+        <Navbar/>
+      </ClientOnly>
       {children}
       </body>
     </html>
