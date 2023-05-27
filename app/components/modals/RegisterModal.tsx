@@ -94,13 +94,13 @@ export const RegisterModal = () => {
                 outline
                 label="Continue with Google"
                 icon={FcGoogle}
-                onClick={() => signIn('google')}
+                onClick={() => {}}
             />
             <Button
                 outline
                 label="Continue with Github"
                 icon={AiFillGithub}
-                onClick={() => signIn('github')}
+                onClick={() => {}}
             />
             <div
                 className="
@@ -112,7 +112,7 @@ export const RegisterModal = () => {
             >
                 <p>Already have an account?
                     <span
-                        onClick={onToggle}
+                        onClick={() => {}}
                         className="
               text-neutral-800
               cursor-pointer
