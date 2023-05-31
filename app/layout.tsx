@@ -5,6 +5,8 @@ import ClientOnly from "@/app/components/ClientOnly";
 import {RegisterModal} from "./components/modals/RegisterModal";
 import React from "react";
 import {ToasterProvider} from "@/app/providers/ToasterProvider";
+import {LoginModal} from "@/app/components/modals/LoginModal";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 const font = Montserrat({ subsets: ['latin'] })
 
@@ -13,18 +15,21 @@ export const metadata = {
   description: 'Discover a World of Homes Away from Home',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return (
+    const currentUser = await getCurrentUser();
+
+    return (
     <html lang="en">
       <body className={font.className}>
       <ClientOnly>
           <ToasterProvider/>
+          <LoginModal/>
         <RegisterModal/>
-        <Navbar/>
+        <Navbar currentUser={currentUser}/>
       </ClientOnly>
       {children}
       </body>

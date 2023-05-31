@@ -5,14 +5,28 @@ import ProfilePic from "@/app/components/ProfilePic";
 import {useState,useCallback} from "react";
 import MenuItem from "@/app/components/navbar/MenuItem";
 import {useRegisterModal} from "@/app/hooks/useRegisterModal";
+import {useLoginModal} from "@/app/hooks/useLoginModal";
+import {User} from "@prisma/client";
+import {signOut} from "next-auth/react";
 
-const UserMenu = () => {
+
+interface UserMenuProps {
+    currentUser?: User | null
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({
+                                               currentUser
+                                           }) => {
     const registerModal = useRegisterModal();
+    const loginModel = useLoginModal();
+
     const [isOpen, setIsOpen] = useState(false);
-    const [currentUser, setCurrentUser] = useState(false);
+    // const [currentUser, setCurrentUser] = useState(false);
+
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
+
     return (
         <div className="flex flex-row gap-3 items-center">
             <div className="
@@ -92,14 +106,14 @@ const UserMenu = () => {
                                 <hr />
                                 <MenuItem
                                     label="Logout"
-                                    onClick={() => {}}
+                                    onClick={() => signOut()}
                                 />
                             </>
                         ) : (
                             <>
                                 <MenuItem
                                     label="Login"
-                                    onClick={() => {}}
+                                    onClick={loginModel.onOpen}
                                 />
                                 <MenuItem
                                     label="Sign up"
