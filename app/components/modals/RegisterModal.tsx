@@ -17,11 +17,14 @@ import {Heading} from "@/app/components/Heading";
 import Input from "@/app/components/inputs/Input";
 import toast from "react-hot-toast";
 import {Button} from "@/app/components/Button";
+import {signIn} from "next-auth/react";
+import {useLoginModal} from "@/app/hooks/useLoginModal";
 
 
 
 export const RegisterModal = () => {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -43,15 +46,22 @@ export const RegisterModal = () => {
 
         axios.post('/api/register', data)
             .then(() => {
-               registerModal.onClose();
+                toast.success('Registered!');
+                registerModal.onClose();
+                loginModal.onOpen();
             })
             .catch((error) => {
-                toast.error("Sorry, something went wrong")
+                toast.error(error);
             })
             .finally(() => {
                 setIsLoading(false);
             })
     }
+
+    const onToggle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    }, [registerModal, loginModal])
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -95,13 +105,13 @@ export const RegisterModal = () => {
                 outline
                 label="Continue with Google"
                 icon={FcGoogle}
-                onClick={() => {}}
+                onClick={() => signIn('google')}
             />
             <Button
                 outline
                 label="Continue with Github"
                 icon={AiFillGithub}
-                onClick={() => {}}
+                onClick={() => signIn('github')}
             />
             <div
                 className="
@@ -113,7 +123,7 @@ export const RegisterModal = () => {
             >
                 <p>Already have an account?
                     <span
-                        onClick={() => {}}
+                        onClick={onToggle}
                         className="
               text-neutral-800
               cursor-pointer
