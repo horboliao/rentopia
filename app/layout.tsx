@@ -7,6 +7,7 @@ import React from "react";
 import {ToasterProvider} from "@/app/providers/ToasterProvider";
 import {LoginModal} from "@/app/components/modals/LoginModal";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import RentModal from "@/app/components/modals/RentModal";
 
 const font = Montserrat({ subsets: ['latin'] })
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
       <body className={font.className}>
       <ClientOnly>
           <ToasterProvider/>
+          <RentModal/>
           <LoginModal/>
         <RegisterModal/>
         <Navbar currentUser={currentUser}/>
