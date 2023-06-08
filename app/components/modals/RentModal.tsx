@@ -19,7 +19,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
 
-
+// Define the steps as an enum
 enum STEPS {
     CATEGORY = 0,
     LOCATION = 1,
@@ -30,12 +30,16 @@ enum STEPS {
 }
 
 const RentModal = () => {
+    // Use the useRentModal hook to access the state and functions related to the rent modal
     const router = useRouter()
     const rentModal = useRentModal();
 
+    // Initialize isLoading state variable to control the loading state of the form
     const [isLoading, setIsLoading] = useState(false);
+    // Initialize the current step state variable with the initial step value
     const [step, setStep] = useState(STEPS.CATEGORY);
 
+    // Use the useForm hook to initialize the form with default values and retrieve form-related functions and state variables
     const {
         register,
         handleSubmit,
@@ -59,6 +63,7 @@ const RentModal = () => {
         }
     });
 
+    // Retrieve the values of specific form fields using the watch function
     const location = watch('location');
     const category = watch('category');
     const guestCount = watch('guestCount');
@@ -67,10 +72,13 @@ const RentModal = () => {
     const imageSrc = watch('imageSrc');
 
 
+    // Dynamically import the Map component only when the location field changes
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr: false
     }), [location]);
 
+
+    // Function to set a custom value for a specific form field
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value, {
             shouldDirty: true,
@@ -79,38 +87,53 @@ const RentModal = () => {
         })
     }
 
+    // Function to handle going back to the previous step
     const onBack = () => {
         setStep((value) => value - 1);
     }
 
+    // Function to handle going to the next step
     const onNext = () => {
         setStep((value) => value + 1);
     }
 
+    // Define the form submission handler
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         if (step !== STEPS.PRICE) {
             return onNext();
         }
 
+        // Set isLoading to true to indicate that the form is being submitted
         setIsLoading(true);
 
+        // Send a POST request to the /api/listings endpoint with the form data
         axios.post('/api/listings', data)
             .then(() => {
+                // Display a success message if the listing is created successfully
                 toast.success('Listing created!');
+
+                // Refresh the router to update the page
                 router.refresh();
+
+                // Reset the form to its initial state
                 reset();
+                // Go back to the first step (CATEGORY)
                 setStep(STEPS.CATEGORY)
+
+                // Close the rent modal
                 rentModal.onClose();
             })
             .catch(() => {
+                // Display an error message if there's an error
                 toast.error('Something went wrong.');
             })
             .finally(() => {
+                // Set isLoading back to false after the request is completed
                 setIsLoading(false);
             })
     }
 
-
+    // Determine the label for the main action button based on the current step
     const actionLabel = useMemo(() => {
         if (step === STEPS.PRICE) {
             return 'Create'
@@ -119,6 +142,7 @@ const RentModal = () => {
         return 'Next'
     }, [step]);
 
+    // Determine the label for the secondary action button based on the current step
     const secondaryActionLabel = useMemo(() => {
         if (step === STEPS.CATEGORY) {
             return undefined
@@ -127,6 +151,7 @@ const RentModal = () => {
         return 'Back'
     }, [step]);
 
+    // JSX content for the modal body based on the current step
     let bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
@@ -158,6 +183,7 @@ const RentModal = () => {
         </div>
     )
 
+    // Update bodyContent based on the current step
     if (step === STEPS.LOCATION) {
         bodyContent = (
             <div className="flex flex-col gap-8">

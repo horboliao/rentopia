@@ -9,14 +9,15 @@ import { BiDollar } from "react-icons/bi";
 import React from "react";
 
 interface InputProps {
-    id: string;
-    label: string;
-    type?: string;
-    disabled?: boolean;
-    formatPrice?: boolean;
-    required?: boolean;
-    register: UseFormRegister<FieldValues>,
-    errors: FieldErrors
+    id: string; // Unique identifier for the input element
+    label: string; // Label text for the input element
+    type?: string; // Type of the input element, defaults to "text"
+    disabled?: boolean; // Indicates whether the input should be disabled
+    formatPrice?: boolean; // Indicates whether the input value should be formatted as a price
+    required?: boolean; // Indicates whether the input is required
+    register: UseFormRegister<FieldValues>, // Register function from react-hook-form for registering the input element
+    errors: FieldErrors // Error object from react-hook-form for managing input errors
+
 }
 
 const Input: React.FC<InputProps> = ({

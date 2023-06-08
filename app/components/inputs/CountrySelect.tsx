@@ -5,23 +5,24 @@ import Select from 'react-select'
 import useCountries from '@/app/hooks/useCountries';
 
 export type CountrySelectValue = {
-    flag: string;
-    label: string;
-    latlng: number[],
-    region: string;
-    value: string
+    flag: string; // Flag image URL for the country
+    label: string; // Country label/name
+    latlng: number[]; // Latitude and longitude coordinates of the country
+    region: string; // Region of the country
+    value: string; // Unique value for the country
 }
 
 interface CountrySelectProps {
-    value?: CountrySelectValue;
-    onChange: (value: CountrySelectValue) => void;
+    value?: CountrySelectValue; // Current selected value of the country select
+    onChange: (value: CountrySelectValue) => void; // Function to handle the change event of the country select
 }
 
 const CountrySelect: React.FC<CountrySelectProps> = ({
                                                          value,
                                                          onChange
                                                      }) => {
-    const { getAll } = useCountries();
+    const { getAll } = useCountries(); // Custom hook to retrieve all country options
+
 
     return (
         <div>

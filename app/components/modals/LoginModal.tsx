@@ -25,10 +25,10 @@ import {useRouter} from "next/navigation";
 
 
 export const LoginModal = () => {
-    const router = useRouter();
-    const registerModal = useRegisterModal();
-    const loginModal =  useLoginModal();
-    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter(); // Accessing the router object for navigation
+    const registerModal = useRegisterModal(); // Using the useRegisterModal hook
+    const loginModal =  useLoginModal(); // Using the useLoginModal hook
+    const [isLoading, setIsLoading] = useState(false); // Managing the loading state
 
     const {
         register,
@@ -41,26 +41,26 @@ export const LoginModal = () => {
             email: '',
             password: ''
         },
-    });
+    }); // Initializing the form using the useForm hook from "react-hook-form"
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        setIsLoading(true);
+        setIsLoading(true); // Set loading state to true
 
         signIn('credentials', {
             ...data,
             redirect: false,
         })
             .then((callback) => {
-                setIsLoading(false);
+                setIsLoading(false); // Set loading state to false
 
                 if (callback?.ok) {
-                    toast.success('Logged in');
-                    router.refresh();
-                    loginModal.onClose();
+                    toast.success('Logged in'); // Show success toast message
+                    router.refresh(); // Refresh the page
+                    loginModal.onClose(); // Close the login modal
                 }
 
                 if (callback?.error) {
-                    toast.error(callback.error);
+                    toast.error(callback.error); // Show error toast message
                 }
             });
     }
@@ -68,7 +68,7 @@ export const LoginModal = () => {
     const onToggle = useCallback(() => {
         loginModal.onClose();
         registerModal.onOpen();
-    }, [loginModal, registerModal])
+    }, [loginModal, registerModal]) // Toggle between login and register modals
 
 
     const bodyContent = (

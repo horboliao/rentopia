@@ -4,10 +4,10 @@ import { IconType } from "react-icons";
 
 
 interface CategoryBoxProps {
-    icon: IconType,
-    label: string;
-    selected?: boolean;
-    onClick: (value: string) => void;
+    icon: IconType; // Icon component to render
+    label: string; // Label text for the category box
+    selected?: boolean; // Indicates if the category box is selected or not (optional)
+    onClick: (value: string) => void; // Function to handle the click event of the category box
 }
 
 const CategoryBox: React.FC<CategoryBoxProps> = ({

@@ -1,27 +1,25 @@
-'use client';
+import React, { useEffect, useState } from "react";
 
-import React, {useEffect, useState} from "react";
-
-interface ClientOnlyProps{
-    children: React.ReactNode;
+interface ClientOnlyProps {
+    children: React.ReactNode; // The children components to be rendered
 }
 
-const ClientOnly: React.FC<ClientOnlyProps> = ({
-   children
-        })  => {
-  const [hasMounted, setHasMounted] = useState(false);
+const ClientOnly: React.FC<ClientOnlyProps> = ({ children }) => {
+    const [hasMounted, setHasMounted] = useState(false);
 
-  useEffect(() => {
-      setHasMounted(true);
-  },[])
+    useEffect(() => {
+        setHasMounted(true); // Set the 'hasMounted' flag to true when the component mounts
+    }, []);
 
-    if(!hasMounted){
-     return null;
+    if (!hasMounted) {
+        return null; // Render nothing if the component has not mounted yet
     }
-  return (
-      <>
-          {children}
-      </>
-  );
-}
+
+    return (
+        <>
+            {children} // Render the children components
+        </>
+    );
+};
+
 export default ClientOnly;

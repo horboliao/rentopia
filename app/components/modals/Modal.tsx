@@ -5,18 +5,17 @@ import {IoMdClose} from "react-icons/io";
 
 import {Button} from "../Button";
 
-interface ModalProps{
-    isOpen?: boolean;
-    onClose: () => void;
-    onSubmit: () => void;
-    title?: string;
-    body?: React.ReactElement;
-    footer?: React.ReactElement;
-    actionLabel: string;
-    disabled?: boolean;
-    secondaryAction?: ()  => void;
-    secondaryActionLabel?: string;
-    
+interface ModalProps {
+    isOpen?: boolean; // Optional prop indicating whether the modal is open or not
+    onClose: () => void; // Callback function to handle modal close
+    onSubmit: () => void; // Callback function to handle modal submit
+    title?: string; // Optional prop for the modal title
+    body?: React.ReactElement; // Optional prop for the modal body content
+    footer?: React.ReactElement; // Optional prop for the modal footer content
+    actionLabel: string; // Required prop for the label of the main action button
+    disabled?: boolean; // Optional prop to disable the modal and its actions
+    secondaryAction?: () => void; // Optional prop for the secondary action callback function
+    secondaryActionLabel?: string; // Optional prop for the label of the secondary action button
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -31,10 +30,10 @@ export const Modal: React.FC<ModalProps> = ({
     secondaryAction,
     secondaryActionLabel,
                                             }) => {
-    const[showModal, setShowModal] = useState(isOpen);
+    const[showModal, setShowModal] = useState(isOpen); // State to manage the visibility of the modal
 
     useEffect(() => {
-        setShowModal(isOpen)
+        setShowModal(isOpen); // Update the visibility state when the isOpen prop changes
     }, [isOpen]);
 
 
@@ -45,7 +44,7 @@ export const Modal: React.FC<ModalProps> = ({
         setShowModal(false);
         setTimeout(() => {
             onClose();
-        }, 300)
+        }, 300); // Close the modal with a delay for animation
     }, [onClose, disabled]);
 
 
@@ -64,7 +63,7 @@ export const Modal: React.FC<ModalProps> = ({
     },[secondaryAction, disabled]);
 
     if (!isOpen){
-        return null;
+        return null; // Render nothing if the modal is not open
     }
     return(
         <>

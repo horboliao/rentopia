@@ -4,10 +4,10 @@ import React, { useCallback } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 interface CounterProps {
-    title: string;
-    subtitle: string;
-    value: number;
-    onChange: (value: number) => void;
+    title: string; // Title text for the counter
+    subtitle: string; // Subtitle text for the counter
+    value: number; // Current value of the counter
+    onChange: (value: number) => void; // Function to handle value change
 }
 
 const Counter: React.FC<CounterProps> = ({
@@ -17,15 +17,15 @@ const Counter: React.FC<CounterProps> = ({
                                              onChange,
                                          }) => {
     const onAdd = useCallback(() => {
-        onChange(value + 1);
+        onChange(value + 1); // Increase the value by 1 and call the onChange function
     }, [onChange, value]);
 
     const onReduce = useCallback(() => {
         if (value === 1) {
-            return;
+            return;// If the value is already 1, do nothing
         }
 
-        onChange(value - 1);
+        onChange(value - 1);  // Decrease the value by 1 and call the onChange function
     }, [onChange, value]);
 
     return (
