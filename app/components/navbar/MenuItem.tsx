@@ -5,7 +5,7 @@ interface MenuItemProps {
     onClick: () => void;
     label: string;
 }
-
+//element of dropdown list when you click on profile
 const MenuItem: React.FC<MenuItemProps> = ({onClick,label}) => {
     return (
         <div

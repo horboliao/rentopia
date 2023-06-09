@@ -1,42 +1,32 @@
 'use client';
-
 import React, { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
 import {useLoginModal} from "@/app/hooks/useLoginModal";
 import {useRegisterModal} from "@/app/hooks/useRegisterModal";
 import {useRentModal} from "@/app/hooks/useRentModal";
-
 import { SafeUser } from "@/app/types";
-
 import MenuItem from "./MenuItem";
 import Avatar from "@/app/components/Avatar";
-
-
-
-
 
 interface UserMenuProps {
     currentUser?: SafeUser | null
 }
-
-const UserMenu: React.FC<UserMenuProps> = ({
-                                               currentUser
-                                           }) => {
+// UserMenu component for displaying user menu options
+const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
     const router = useRouter();
-
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
     const rentModal = useRentModal();
-
     const [isOpen, setIsOpen] = useState(false);
 
+    // Toggle the user menu open/closed state
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
 
+    // Handler for when the "Rentopia your home" option is clicked
     const onRent = useCallback(() => {
         if (!currentUser) {
             return loginModal.onOpen();

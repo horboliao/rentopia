@@ -2,6 +2,7 @@
 
 import { PuffLoader } from "react-spinners";
 
+// Loader component that displays a spinning animation
 const Loader = () => {
     return (
         <div

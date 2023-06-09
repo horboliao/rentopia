@@ -14,7 +14,9 @@ interface ListingReservationProps {
     disabled?: boolean;
     disabledDates: Date[];
 }
-
+/**
+ * A component for reserving a listing with a price, date range, and total price.
+ */
 const ListingReservation: React.FC<
     ListingReservationProps
     > = ({

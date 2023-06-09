@@ -8,16 +8,20 @@ import { differenceInDays } from 'date-fns';
 import useSearchModal from '@/app/hooks/useSearchModal';
 import useCountries from '@/app/hooks/useCountries';
 
+
+// Custom Search component
 const Search = () => {
     const searchModal = useSearchModal();
     const params = useSearchParams();
     const { getByValue } = useCountries();
 
-    const  locationValue = params?.get('locationValue');
-    const  startDate = params?.get('startDate');
-    const  endDate = params?.get('endDate');
-    const  guestCount = params?.get('guestCount');
+    // Get values from search parameters
+    const locationValue = params?.get('locationValue');
+    const startDate = params?.get('startDate');
+    const endDate = params?.get('endDate');
+    const guestCount = params?.get('guestCount');
 
+    // Determine location label based on location value
     const locationLabel = useMemo(() => {
         if (locationValue) {
             return getByValue(locationValue as string)?.label;
@@ -26,6 +30,7 @@ const Search = () => {
         return 'Anywhere';
     }, [locationValue, getByValue]);
 
+    // Determine duration label based on start and end dates
     const durationLabel = useMemo(() => {
         if (startDate && endDate) {
             const start = new Date(startDate as string);
@@ -39,9 +44,10 @@ const Search = () => {
             return `${diff} Days`;
         }
 
-        return 'Any Week'
+        return 'Any Week';
     }, [startDate, endDate]);
 
+    // Determine guest label based on guest count
     const guestLabel = useMemo(() => {
         if (guestCount) {
             return `${guestCount} Guests`;

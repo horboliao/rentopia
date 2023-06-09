@@ -12,12 +12,13 @@ interface IParams {
 }
 
 const ListingPage = async ({ params }: { params: IParams }) => {
-
+    // Fetch the listing, reservations, and current user data
     const listing = await getListingById(params);
     const reservations = await getReservations(params);
     const currentUser = await getCurrentUser();
 
     if (!listing) {
+        // If the listing is not found, display an empty state
         return (
             <ClientOnly>
                 <EmptyState />
@@ -25,6 +26,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
         );
     }
 
+    // Render the ListingClient component with the fetched data
     return (
         <ClientOnly>
             <ListingClient

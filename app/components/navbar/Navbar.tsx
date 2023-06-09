@@ -11,10 +11,8 @@ import Categories from "@/app/components/navbar/Categories";
 interface NavbarProps {
     currentUser?: SafeUser | null;
 }
-
-const Navbar: React.FC<NavbarProps> = ({
-                                           currentUser
-                                       }) => {
+//navigation panel with logo, search filter and profile icon
+const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
     return (
         <div className="fixed w-full bg-white z-10 shadow-sm">
             <div className="py-4 border-b-[1px]">

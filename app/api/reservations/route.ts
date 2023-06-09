@@ -3,9 +3,13 @@ import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
-export async function POST(
-    request: Request,
-) {
+/**
+ * Handles the creation of a new reservation.
+ *
+ * @param request - The incoming request.
+ * @returns The response containing the created listing and reservation.
+ */
+export async function POST(request: Request) {
     const currentUser = await getCurrentUser();
 
     if (!currentUser) {
@@ -20,6 +24,7 @@ export async function POST(
         totalPrice
     } = body;
 
+    // Check if all required fields are present
     if (!listingId || !startDate || !endDate || !totalPrice) {
         return NextResponse.error();
     }

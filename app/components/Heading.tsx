@@ -6,6 +6,7 @@ interface HeadingProps {
     center?: boolean;
 }
 
+// Heading component to display a title and subtitle
 const Heading: React.FC<HeadingProps> = ({
                                              title,
                                              subtitle,

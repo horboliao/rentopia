@@ -13,9 +13,12 @@ interface HomeProps {
 }
 
 const Home = async ({ searchParams }: HomeProps) => {
+    // Fetch the listings based on the search parameters
   const listings = await getListings(searchParams);
+    // Get the current user
   const currentUser = await getCurrentUser();
 
+    // If no listings are found, display the EmptyState component
   if (listings.length === 0) {
     return (
         <ClientOnly>
@@ -23,6 +26,7 @@ const Home = async ({ searchParams }: HomeProps) => {
         </ClientOnly>
     );
   }
+    // Render the listings in a grid layout
   return (
       <ClientOnly>
         <Container>

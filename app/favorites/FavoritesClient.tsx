@@ -8,11 +8,11 @@ interface FavoritesClientProps {
     listings: SafeListing[],
     currentUser?: SafeUser | null,
 }
-
-const FavoritesClient: React.FC<FavoritesClientProps> = ({
-                                                             listings,
-                                                             currentUser
-                                                         }) => {
+/*
+component displays a list of favorited listings.
+It renders a heading with the title "Favorites" and a subtitle indicating that it's a list of places the user has favorited
+ */
+const FavoritesClient: React.FC<FavoritesClientProps> = ({listings,currentUser}) => {
     return (
         <Container>
             <Heading

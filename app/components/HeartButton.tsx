@@ -10,6 +10,7 @@ interface HeartButtonProps {
     currentUser?: SafeUser | null
 }
 
+// HeartButton component to display a heart icon for favoriting a listing
 const HeartButton: React.FC<HeartButtonProps> = ({
                                                      listingId,
                                                      currentUser

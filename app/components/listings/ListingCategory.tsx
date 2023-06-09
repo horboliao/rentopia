@@ -7,7 +7,9 @@ interface CategoryViewProps {
     label: string,
     description: string
 }
-
+/**
+ * A component for displaying a category with an icon, label, and description.
+ */
 const CategoryView: React.FC<CategoryViewProps> = ({
                                                        icon: Icon,
                                                        label,

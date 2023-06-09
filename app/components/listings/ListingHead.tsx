@@ -15,7 +15,9 @@ interface ListingHeadProps {
     id: string;
     currentUser?: SafeUser | null
 }
-
+/**
+ * A component for displaying the header of a listing, including the title, location, image, and heart button.
+ */
 const ListingHead: React.FC<ListingHeadProps> = ({
                                                      title,
                                                      locationValue,

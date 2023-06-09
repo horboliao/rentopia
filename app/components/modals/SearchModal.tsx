@@ -17,6 +17,7 @@ import CountrySelect, {
 } from "../inputs/CountrySelect";
 import Heading from '../Heading';
 
+// Enumeration for different steps in the search modal
 enum STEPS {
     LOCATION = 0,
     DATE = 1,
@@ -117,6 +118,7 @@ const SearchModal = () => {
         return 'Back'
     }, [step]);
 
+    // Determine the content of the body based on the current step
     let bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading

@@ -14,7 +14,9 @@ interface DatePickerProps {
     onChange: (value: RangeKeyDict) => void;
     disabledDates?: Date[];
 }
-
+/**
+ * A component for selecting a date range.
+ */
 const DatePicker: React.FC<DatePickerProps> = ({
                                                    value,
                                                    onChange,

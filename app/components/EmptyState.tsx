@@ -10,6 +10,7 @@ interface EmptyStateProps {
     showReset?: boolean;
 }
 
+// EmptyState component to display when there are no exact matches
 const EmptyState: React.FC<EmptyStateProps> = ({
                                                    title = "No exact matches",
                                                    subtitle = "Try changing or removing some of your filters.",

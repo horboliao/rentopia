@@ -9,6 +9,7 @@ interface ErrorStateProps {
 }
 
 const ErrorState: React.FC<ErrorStateProps> = ({ error }) => {
+    // Log the error to the console
     useEffect(() => {
         console.error(error);
     }, [error]);

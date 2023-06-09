@@ -4,6 +4,7 @@ import {useRouter} from "next/navigation";
 
 const Logo = () => {
     const router = useRouter();
+    //just logo on the left upper corner
     return (
         <Image
             alt="Logo"

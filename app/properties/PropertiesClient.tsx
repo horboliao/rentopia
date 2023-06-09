@@ -16,29 +16,26 @@ interface PropertiesClientProps {
     currentUser?: SafeUser | null,
 }
 
-const PropertiesClient: React.FC<PropertiesClientProps> = ({
-                                                               listings,
-                                                               currentUser
-                                                           }) => {
+const PropertiesClient: React.FC<PropertiesClientProps> = ({listings,currentUser}) => {
     const router = useRouter();
     const [deletingId, setDeletingId] = useState('');
 
     const onDelete = useCallback((id: string) => {
         setDeletingId(id);
 
+        // Send a DELETE request to delete the listing
         axios.delete(`/api/listings/${id}`)
             .then(() => {
-                toast.success('Listing deleted');
-                router.refresh();
+                toast.success('Listing deleted'); // Display a success toast message
+                router.refresh(); // Refresh the page to reflect the updated listings
             })
             .catch((error) => {
-                toast.error(error?.response?.data?.error)
+                toast.error(error?.response?.data?.error); // Display an error toast message if deletion fails
             })
             .finally(() => {
-                setDeletingId('');
+                setDeletingId(''); // Reset the deletingId state variable
             })
     }, [router]);
-
 
     return (
         <Container>
@@ -48,16 +45,16 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
             />
             <div
                 className="
-          mt-10
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8
-        "
+                    mt-10
+                    grid
+                    grid-cols-1
+                    sm:grid-cols-2
+                    md:grid-cols-3
+                    lg:grid-cols-4
+                    xl:grid-cols-5
+                    2xl:grid-cols-6
+                    gap-8
+                "
             >
                 {listings.map((listing: any) => (
                     <ListingCard

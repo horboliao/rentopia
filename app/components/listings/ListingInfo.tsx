@@ -26,7 +26,9 @@ interface ListingInfoProps {
     } | undefined
     locationValue: string;
 }
-
+/**
+ * A component for displaying information about a listing, including the host, description, amenities, and location.
+ */
 const ListingInfo: React.FC<ListingInfoProps> = ({
                                                      user,
                                                      description,

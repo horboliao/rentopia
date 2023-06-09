@@ -60,7 +60,7 @@ export const categories = [
     {
         label: 'Skiing',
         icon: FaSkiing,
-        description: 'This property has skiing activies!'
+        description: 'This property has skiing activities!'
     },
     {
         label: 'Castles',
@@ -105,10 +105,12 @@ const Categories = () => {
     const pathname = usePathname();
     const isMainPage = pathname === '/';
 
+    //if we are not on the main page, so we don't render categories filter
     if (!isMainPage) {
         return null;
     }
 
+    //added some styles for better looking of the list on all types of screens
     return (
         <Container>
             <div

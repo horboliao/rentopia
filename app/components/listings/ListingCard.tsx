@@ -25,6 +25,7 @@ interface ListingCardProps {
     currentUser?: SafeUser | null
 }
 
+// ListingCard component to display a card for a listing
 const ListingCard: React.FC<ListingCardProps> = ({
                                                      data,
                                                      reservation,
@@ -39,6 +40,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
     const location = getByValue(data.locationValue);
 
+    // Handle cancel action
     const handleCancel = useCallback(
         (e: React.MouseEvent<HTMLButtonElement>) => {
             e.stopPropagation();
@@ -50,6 +52,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             onAction?.(actionId)
         }, [disabled, onAction, actionId]);
 
+    // Calculate price based on reservation or listing data
     const price = useMemo(() => {
         if (reservation) {
             return reservation.totalPrice;
@@ -58,6 +61,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         return data.price;
     }, [reservation, data.price]);
 
+    // Format reservation date
     const reservationDate = useMemo(() => {
         if (!reservation) {
             return null;

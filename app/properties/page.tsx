@@ -6,7 +6,13 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListings from "@/app/actions/getListings";
 
 import PropertiesClient from "./PropertiesClient";
-
+/*
+component fetches the current user and checks if the user is authenticated.
+If not, it displays an empty state with a title and subtitle indicating that the user is unauthorized and needs to log in.
+If the user is authenticated, it fetches the listings for the user and checks if there are any properties available.
+If there are no properties, it displays an empty state. Otherwise, it renders the PropertiesClient component,
+passing the fetched listings and the current user as props.
+ */
 const PropertiesPage = async () => {
     const currentUser = await getCurrentUser();
 

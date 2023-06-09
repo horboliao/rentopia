@@ -16,17 +16,21 @@ interface IUseFavorite {
 const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
     const router = useRouter();
 
+    // Retrieve the login modal from the useLoginModal hook
     const loginModal = useLoginModal();
 
+    // Determine if the listing is already in the user's favorites
     const hasFavorite = useMemo(() => {
         const list = currentUser?.favoriteIds || [];
 
         return list.includes(listingId);
     }, [currentUser, listingId]);
 
+    // Toggle the favorite status of the listing
     const toggleFavorite = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
             e.stopPropagation();
 
+            // If the user is not logged in, open the login modal
             if (!currentUser) {
                 return loginModal.onOpen();
             }
@@ -34,13 +38,16 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
             try {
                 let request;
 
+                // Determine the API request based on the current favorite status
                 if (hasFavorite) {
                     request = () => axios.delete(`/api/favorites/${listingId}`);
                 } else {
                     request = () => axios.post(`/api/favorites/${listingId}`);
                 }
 
+                // Make the API request
                 await request();
+                // Refresh the page to update the favorite status
                 router.refresh();
                 toast.success('Success');
             } catch (error) {
