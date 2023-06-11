@@ -1,3 +1,4 @@
+'use client';
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useCallback, useState } from "react";

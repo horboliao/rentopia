@@ -23,8 +23,8 @@ export const Button: React.FC<ButtonProps> = ({
                                               }) => {
     return (
         <button
-            onClick={onClick} // Attach the onClick event handler
-            disabled={disabled} // Set the disabled state of the button
+            onClick={onClick}
+            disabled={disabled}
             className={`
         relative
         disabled:opacity-70
@@ -44,7 +44,7 @@ export const Button: React.FC<ButtonProps> = ({
         >
             {Icon && (
                 <Icon
-                    size={24} // Set the size of the icon
+                    size={24}
                     className="
             absolute
             left-4
@@ -52,7 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
           "
                 />
             )}
-            {label} // Display the label text
+            {label}
 
         </button>
     );
