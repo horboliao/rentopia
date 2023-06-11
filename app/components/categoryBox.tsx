@@ -50,7 +50,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
 
     return (
         <div
-            onClick={handleClick} // Attach the click event handler
+            onClick={handleClick}
             className={`
         flex 
         flex-col 
@@ -66,8 +66,8 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         ${selected ? "text-neutral-800" : "text-neutral-500"} // Set the text color based on the selected flag
       `}
         >
-            <Icon size={26} /> // Render the icon component
-            <div className="font-medium text-sm">{label}</div> // Display the category label
+            <Icon size={26} />
+            <div className="font-medium text-sm">{label}</div>
         </div>
     );
 };
