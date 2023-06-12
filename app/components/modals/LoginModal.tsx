@@ -25,7 +25,7 @@ import {useRouter} from "next/navigation";
 
 
 export const LoginModal = () => {
-    const router = useRouter(); // Accessing the router object for navigation
+    const router = useRouter();
     const registerModal = useRegisterModal(); // Using the useRegisterModal hook
     const loginModal =  useLoginModal(); // Using the useLoginModal hook
     const [isLoading, setIsLoading] = useState(false); // Managing the loading state
